@@ -1,4 +1,5 @@
-This project was bootstrapped with [Create React Native App]
+# Coins React
+Crypto markets
 
 ## Packages
 
