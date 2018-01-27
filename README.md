@@ -1,20 +1,19 @@
 # Coins React
 Crypto markets
 
-## Packages
+## Installation
+Dependencies:
+- Xcode 8.0 or newer
+- Node 6.0 or newer
 
-react
-react-native
-react-navigation
-react-native-vector-icons
-@expo/vector-icons
+````
+brew install watchman
+brew install yarn
 
-redux
-react-redux
-redux-logger
-redux-thunk
+yarn global add react-native-cli
+yarn install
+````
 
-
-// Dev
-flow
-react-devtools
+- React: react, react-native, react-navigation, react-native-vector-icons
+- Redux: redux, react-redux, redux-logger, redux-thunk
+- Devtools: react-devtools, babel-cli, babel-preset-flow, flow-bin
