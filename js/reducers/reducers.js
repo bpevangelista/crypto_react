@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
-import marketsReducer from './markets'
-import navigationReducer from './navigation'
+import marketsReducer from './marketsReducer'
+import navReducer from './navReducer'
 
 const reducers = combineReducers({
-  nav: navigationReducer,
+  nav: navReducer,
   markets: marketsReducer,
 });
 

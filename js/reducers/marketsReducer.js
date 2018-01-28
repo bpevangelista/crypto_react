@@ -1,4 +1,3 @@
-//import * from '../actions/markets'
 import * as actions from '../actions/actions'
 
 const defaultState = {

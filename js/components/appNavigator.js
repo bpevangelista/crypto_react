@@ -59,9 +59,9 @@ const AppWithReduxNavigation = ({dispatch, nav}) => {
   );
 };
 
-const mapStateToProps = storeState => ({
-  nav: storeState.nav
+const mapStoreToProps = (store) => ({
+  nav: store.nav
 });
 
 // Passes dispatch and each key on mapStateToProps (e.g. nav) to AppWithReduxNavigation
-export default connect(mapStateToProps)(AppWithReduxNavigation);
+export default connect(mapStoreToProps)(AppWithReduxNavigation);
