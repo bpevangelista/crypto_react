@@ -6,7 +6,7 @@ import { TabNavigator, addNavigationHelpers } from 'react-navigation';
 
 //import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon from '@expo/vector-icons/Entypo';
-import { MarketsScreen, CoinfolioScreen, TrendingScreen } from './components';
+import { MarketsScreen, CoinfolioScreen, TrendingScreen } from './';
 
 const StockRoutes = {
   Markets: {

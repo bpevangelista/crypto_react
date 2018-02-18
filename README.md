@@ -17,3 +17,15 @@ yarn install
 - React: react, react-native, react-navigation, react-native-vector-icons
 - Redux: redux, react-redux, redux-logger, redux-thunk
 - Devtools: react-devtools, babel-cli, babel-preset-flow, flow-bin
+
+# Phylosophies
+
+https://github.com/ModusCreateOrg/react-navigation-redux-sample
+https://react.rocks/example/FinanceReactNative
+
+
+- Try to have one reducer for everything until you need to split it
+- Each screen should be connected to the store
+- Components can have props passed from the screen (use spread operator)
+- react-navigation allows parameters passing and querying (but we should avoid?)
+  - this.props.navigation.state.params

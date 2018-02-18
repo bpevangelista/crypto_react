@@ -1,9 +1,13 @@
 /* @flow */
 import React from 'react';
-import { Text } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 
-import styles from './styles';
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
 
 export default class CoinfolioScreen extends React.Component<void, void> {
   render() {

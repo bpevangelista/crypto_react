@@ -6,48 +6,28 @@ import { SafeAreaView } from 'react-navigation';
 //import Icon from 'react-native-vector-icons/Entypo';
 import Icon from '@expo/vector-icons/Entypo';
 
-import styles from '../styles';
 import * as actions from '../../actions/marketsActions';
+import type { MarketItemType } from '../../types';
 
-type MarketItemType = {
-  id: string,
-  rank: string,
-  name: string,
-  symbol: string,
-  price_usd: string,
-  percent_change_24h: string,
-  color: string
-};
-
-// class MarketRow extends React.PureComponent<MarketItemType, void> {
-//   constructor(props) {
-//     super(props);
-//   }
-//
-//   onRowPressed() {
-//     //Alert.alert('Touched: ' + this.props.id);
-//     props.showMarketDetails(this.props.id);
-//   }
-//
-//   render() {
-//     let item = this.props;
-//     let itemColor = (parseInt(item.rank) % 2 === 0)? 'powderblue' : 'skyblue';
-//     return (
-//       <TouchableHighlight onPress={() => this.onRowPressed()} underlayColor='black'>
-//       <View style={[styles.listCell, {backgroundColor: itemColor}]}>
-//         <View style={styles.flexRow}>
-//           <Text style={{width:26}}>{item.rank}</Text>
-//           <Text>|  ({item.symbol}) {item.name}</Text>
-//         </View>
-//         <View style={styles.flexRow}>
-//           <Text style={{width:64}}>{item.percent_change_24h}%</Text>
-//           <Text style={{color: 'green', width:96}}>${item.price_usd}</Text>
-//         </View>
-//       </View>
-//       </TouchableHighlight>
-//     );
-//   }
-// }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  flexRow: {
+    flexDirection: 'row'
+  },
+  list: {
+    flex: 1,
+    flexDirection: 'column',
+  },
+  listCell: {
+    flexDirection:'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 10,
+    height:40,
+  },
+});
 
 type MarketsListScreenProps = {
   actions: {
@@ -65,24 +45,17 @@ class MarketsListScreen extends React.Component<MarketsListScreenProps, void> {
     super(props);
   }
 
-  // listRowRender(info: {item: MarketItemType}) {
-  //   console.log(this.props);
-  //   return (
-  //     <MarketRow {...info.item} />
-  //   );
-  // }
-
-  onRowPressed(item: MarketItemType) {
+  onRowPressed(index: number, item: MarketItemType) {
     //Alert.alert('Touched: ' + this.props.id);
     this.props.actions.showMarketDetails(item);
   }
 
-  listRowRender(info: {item: MarketItemType}) {
-    //let itemIndex = info.index;
+  listRowRender(info: {index: number, item: MarketItemType}) {
     let item = info.item;
     let itemColor = (parseInt(item.rank) % 2 === 0)? 'powderblue' : 'skyblue';
     return (
-      <TouchableHighlight onPress={() => this.onRowPressed(item)} underlayColor='black'>
+      <TouchableHighlight underlayColor='black' onPress={() =>
+        this.onRowPressed(info.index, info.item)}>
       <View style={[styles.listCell, {backgroundColor: itemColor}]}>
         <View style={styles.flexRow}>
           <Text style={{width:26}}>{item.rank}</Text>

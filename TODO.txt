@@ -1,0 +1,24 @@
+Feb 19th
+- Details page
+- Search bar
+- Total Market Cap
+- Dummy graph
+
+Feb 26th
+- Basic server
+
+Mar 5th
+
+Mar 12th
+
+Mar 19th
+
+make another screen
+remove expo from project
+make interface better
+generate build
+splash screen
+
+
+low/high
+mkt cap

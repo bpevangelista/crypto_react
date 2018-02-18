@@ -1,11 +1,11 @@
 export const FETCH_MARKETS_PENDING = 'FETCH_MARKETS_PENDING';
 export const FETCH_MARKETS_FULFILLED = 'FETCH_MARKETS_FULFILLED';
+export const FETCH_MARKETS_ERROR = 'FETCH_MARKETS_ERROR';
 export const FETCH_MARKET_DETAILS_PENDING = 'FETCH_MARKET_DETAILS_PENDING';
 export const FETCH_MARKET_DETAILS_FULFILLED = 'FETCH_MARKET_DETAILS_FULFILLED';
-export const FETCH_ERROR = 'FETCH_ERROR';
 
 const fetchMarketsError = (err) => ({
-  type: FETCH_ERROR,
+  type: FETCH_MARKETS_ERROR,
   payload: err
 });
 
@@ -50,13 +50,8 @@ export const showMarketDetails = (item) => {
   return (dispatch) => {
     dispatch(fetchMarketDetailsPending(item));
 
-    // fetch it using item.id
-    let blobTest = {
-      "key": "bitcoin", "id": "bitcoin", "name": "Bitcoin", "symbol": "BTC", "rank": "1", "price_usd": "11305.2",
-      "price_btc": "1.0", "24h_volume_usd": "13947800000.0", "market_cap_usd": "190058070722", "percent_change_1h": "0.99", "percent_change_24h": "-2.11", "percent_change_7d": "-17.14", "last_updated": "1516335565",
-      "color": "powderblue",
-    };
+    // TODO fetch details and history
 
-    dispatch(fetchMarketDetailsFulfilled(blobTest));
+    dispatch(fetchMarketDetailsFulfilled(item));
   };
 };
