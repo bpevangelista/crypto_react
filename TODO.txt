@@ -1,8 +1,8 @@
 Feb 19th
-- Details page
+v - Details page
+- Details Dummy graph
 - Search bar
 - Total Market Cap
-- Dummy graph
 
 Feb 26th
 - Basic server

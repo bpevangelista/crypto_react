@@ -68,7 +68,6 @@ class MarketsListScreen extends React.Component<MarketsListScreenProps, void> {
       </View>
       </TouchableHighlight>
     );
-
   }
 
   render() {

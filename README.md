@@ -14,9 +14,9 @@ yarn global add react-native-cli
 yarn install
 ````
 
-- React: react, react-native, react-navigation, react-native-vector-icons
+- React: react, react-native, react-native-chart/victory-native, react-navigation, react-native-vector-icons
 - Redux: redux, react-redux, redux-logger, redux-thunk
-- Devtools: react-devtools, babel-cli, babel-preset-flow, flow-bin
+- Devtools: react-native-cli, react-devtools, babel-cli, babel-preset-flow, flow-bin
 
 # Phylosophies
 

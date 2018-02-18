@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
+//import { VictoryChart, VictoryArea } from 'victory-native';
 
 //import Icon from 'react-native-vector-icons/Entypo';
 import Icon from '@expo/vector-icons/Entypo';
@@ -15,6 +16,10 @@ type MarketDetailsProps = {
 };
 
 class MarketDetailsScreen extends React.Component<MarketDetailsProps, void> {
+  static navigationOptions = (options) => ({
+    title: options.navigation.state.params.title,
+  });
+
   constructor(props) {
     super(props);
   }
@@ -36,12 +41,29 @@ class MarketDetailsScreen extends React.Component<MarketDetailsProps, void> {
   }
 
   render() {
-    //let navParams = this.props.navigation.state.params;
     let item = this.props.itemDetails;
-    console.log(item);
+
+    let graphStyle = {
+      data: {
+        fill: "#c43a31"
+      }
+    };
+    let graphSamples = [
+      { x: 1, y: 2 },
+      { x: 2, y: 3 },
+      { x: 3, y: 5 },
+      { x: 4, y: 4 },
+      { x: 5, y: 7 },
+    ];
 
     return (
       <SafeAreaView style={styles.container}>
+
+      {/*
+      <VictoryChart>
+        <VictoryArea style={graphStyle} data={graphSamples} />
+      </VictoryChart>
+      */}
 
         <View style={styles.block}>
           <View style={styles.detailsLine}>
@@ -180,7 +202,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStoreToProps = (store) => ({
-    itemDetails: store.markets.itemDetails
+    itemDetails: store.markets.itemDetails,
 });
 const mapDispatchToProps = (dispatch) => ({
 });

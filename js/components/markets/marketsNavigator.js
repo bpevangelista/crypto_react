@@ -15,7 +15,7 @@ const MarketsNavigator = StackNavigator({
   MarketDetails: {
     screen: MarketDetailsScreen,
     navigationOptions : {
-      title: 'Yayaya'
+      //title: ''
     }
   },
 }, {

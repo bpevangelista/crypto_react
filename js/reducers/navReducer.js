@@ -18,8 +18,15 @@ const navigationReducer = (state = defaultState, action) => {
 
   switch (action.type) {
     case actions.FETCH_MARKET_DETAILS_PENDING:
+      let nav = {
+        routeName: 'MarketDetails',
+        params: {
+          title: `${action.payload.name} (${action.payload.symbol})`,
+        },
+      };
+
       nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.navigate({routeName: 'MarketDetails'}));
+        NavigationActions.navigate(nav));
     break;
 
     default:
