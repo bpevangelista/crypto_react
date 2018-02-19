@@ -4,9 +4,7 @@ import { connect } from 'react-redux';
 import { StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 //import { VictoryChart, VictoryArea } from 'victory-native';
-
-//import Icon from 'react-native-vector-icons/Entypo';
-import Icon from '@expo/vector-icons/Entypo';
+import Icon from 'react-native-vector-icons/Entypo';
 
 import * as actions from '../../actions/marketsActions';
 import type { MarketItemDetailsType } from '../../types';

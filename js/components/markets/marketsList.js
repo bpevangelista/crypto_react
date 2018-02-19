@@ -3,8 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Alert, FlatList, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
-//import Icon from 'react-native-vector-icons/Entypo';
-import Icon from '@expo/vector-icons/Entypo';
+import Icon from 'react-native-vector-icons/Entypo';
 
 import * as actions from '../../actions/marketsActions';
 import type { MarketItemType } from '../../types';

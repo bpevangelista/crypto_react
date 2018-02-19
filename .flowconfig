@@ -12,7 +12,7 @@ node_modules/expo/flow/
 
 [options]
 module.name_mapper='react-native.*' -> '<PROJECT_ROOT>/js/_modulesStub.js'
-module.name_mapper='react-navigation' -> '<PROJECT_ROOT>/js/_modulesStub.js'
+module.name_mapper='react-navigation.*' -> '<PROJECT_ROOT>/js/_modulesStub.js'
 module.name_mapper='react-redux' -> '<PROJECT_ROOT>/js/_modulesStub.js'
 module.name_mapper='@expo/vector-icons.*' -> '<PROJECT_ROOT>/js/_modulesStub.js'
 
