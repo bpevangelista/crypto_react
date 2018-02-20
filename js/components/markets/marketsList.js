@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react';
 import { connect } from 'react-redux';
-import { Alert, FlatList, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
+import { Alert, FlatList, StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import Icon from 'react-native-vector-icons/Entypo';
 
@@ -11,20 +11,97 @@ import type { MarketItemType } from '../../types';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#262D35',
   },
-  flexRow: {
-    flexDirection: 'row'
+  topBar: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    //paddingBottom: 4,
+    //paddingLeft: 4,
+    //paddingRight: 4,
+    padding: 6,
+  },
+  searchBar: {
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: '#202020',
+    borderColor: '#202020',
+    borderRadius: 10,
+    borderWidth: 1,
+    height: 40,
+    padding: 10,
+  },
+  rightBar: {
+    flex: 0.2,
+    flexDirection: 'row',
+    height: 40,
+    padding: 10,
+  },
+  rightBar: {
+    flex: 0.4,
+    flexDirection: 'row',
+    height: 40,
+    padding: 10,
   },
   list: {
     flex: 1,
     flexDirection: 'column',
   },
-  listCell: {
+  listRow: {
+    flex: 1,
     flexDirection:'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 10,
+    padding: 4,
     height:40,
+  },
+  textRank: {
+    color: 'white',
+    fontSize: 13,
+    fontWeight: '100',
+    textAlign: 'center',
+    width: 26,
+  },
+  textTitle: {
+    color: 'white',
+    fontSize: 13,
+    fontWeight: '100',
+  },
+  textBase: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: '400',
+  },
+  columnRank: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    borderRightColor: 'slategray',
+    borderRightWidth: 0.5,
+    paddingLeft: 4,
+    paddingRight: 2,
+  },
+  columnTitle: {
+    flex: 2,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    padding: 6,
+  },
+  columnValue: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    padding: 6,
+  },
+  columnPercentage: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 6,
+    borderRadius:10,
+    borderWidth: 1,
   },
 });
 
@@ -39,9 +116,10 @@ type MarketsListScreenProps = {
   }
 }
 
-class MarketsListScreen extends React.Component<MarketsListScreenProps, void> {
+class MarketsListScreen extends React.Component<MarketsListScreenProps, {}> {
   constructor(props) {
     super(props);
+    this.state = {text: ''};
   }
 
   onRowPressed(index: number, item: MarketItemType) {
@@ -49,20 +127,31 @@ class MarketsListScreen extends React.Component<MarketsListScreenProps, void> {
     this.props.actions.showMarketDetails(item);
   }
 
+  formatCurrency(value: string) {
+    let newValue = parseFloat(parseFloat(value).toFixed(6)).toFixed(2).toString();
+    return newValue.replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+  }
+
   listRowRender(info: {index: number, item: MarketItemType}) {
     let item = info.item;
-    let itemColor = (parseInt(item.rank) % 2 === 0)? 'powderblue' : 'skyblue';
+    let backgroundColor = (parseInt(item.rank) % 2 === 0)? '#161A1D' : '#1E2126';
+    let percColor = (item.percent_change_24h >= 0)? 'green' : 'red';
+
     return (
       <TouchableHighlight underlayColor='black' onPress={() =>
         this.onRowPressed(info.index, info.item)}>
-      <View style={[styles.listCell, {backgroundColor: itemColor}]}>
-        <View style={styles.flexRow}>
-          <Text style={{width:26}}>{item.rank}</Text>
-          <Text>|  ({item.symbol}) {item.name}</Text>
+      <View style={[styles.listRow, {backgroundColor}]}>
+        <View style={styles.columnRank}>
+          <Text style={styles.textRank}>{item.rank}</Text>
         </View>
-        <View style={styles.flexRow}>
-          <Text style={{width:64}}>{item.percent_change_24h}%</Text>
-          <Text style={{color: 'green', width:96}}>${item.price_usd}</Text>
+        <View style={styles.columnTitle}>
+          <Text style={styles.textTitle}>{item.name} {item.symbol}</Text>
+        </View>
+        <View style={styles.columnValue}>
+          <Text style={styles.textBase}>{this.formatCurrency(item.price_usd)}</Text>
+        </View>
+        <View style={[styles.columnPercentage, {backgroundColor: percColor}]}>
+          <Text style={styles.textBase}>{item.percent_change_24h}%</Text>
         </View>
       </View>
       </TouchableHighlight>
@@ -73,6 +162,34 @@ class MarketsListScreen extends React.Component<MarketsListScreenProps, void> {
     let markets = this.props.markets;
     return(
       <SafeAreaView style={styles.container}>
+{
+      // <SearchBar
+      //    round
+      //    lightTheme
+      //    containerStyle={styles.search}
+      //    ref="search"
+      //    textInputRef="searchText"
+      //    onChangeText={this.searchText.bind(this)}
+      //    placeholder='Search by Truck Name...'
+      //   />
+}
+      <View style={styles.topBar}>
+        <View style={styles.searchBar}>
+          <TextInput style={{color: 'white'}}
+            value={'Search...'}
+            onChangeText={(text) => this.setState({text})}
+            placeholder="Type here to translate!"
+            />
+        </View>
+        <View style={styles.rightBar}>
+          <Text>All</Text>
+        </View>
+        <View style={styles.rightBar}>
+          <Text>Favorites</Text>
+        </View>
+      </View>
+
+
         <FlatList style={styles.list} data={markets.items}
           keyExtractor={(item, index) => item.id}
           renderItem={(info) => this.listRowRender(info)}
