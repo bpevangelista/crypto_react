@@ -1,29 +1,20 @@
 Feb 19th
+v - Remove expo from project
 v - Details page
-- Details Dummy graph
+v - Details Dummy graph
 - Search bar
 - Total Market Cap
 
 Feb 26th
-- Basic server
+- Add to Favorite / Add to wallet
+- Sorting Coins
+- Better Layout/Interface
 
 Mar 5th
+- Basic server
+- Splash screen
 
 Mar 12th
-
-Mar 19th
-
-----
-- Sorting Coins
-- Add to Favorite / Add to wallet
 - ICOs
 
-make another screen
-remove expo from project
-make interface better
-generate build
-splash screen
-
-
-low/high
-mkt cap
+Mar 19th
