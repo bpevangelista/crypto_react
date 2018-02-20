@@ -3,6 +3,7 @@
 node_modules/
 android/build/**/*
 ios/build/**/*
+ios/**/xcuserdata/**/*
 
 npm-debug.log*
 yarn-debug.log*
