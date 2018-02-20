@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
-//import { VictoryChart, VictoryArea } from 'victory-native';
+import { VictoryChart, VictoryArea } from 'victory-native';
 import Icon from 'react-native-vector-icons/Entypo';
 
 import * as actions from '../../actions/marketsActions';
@@ -57,11 +57,9 @@ class MarketDetailsScreen extends React.Component<MarketDetailsProps, void> {
     return (
       <SafeAreaView style={styles.container}>
 
-      {/*
-      <VictoryChart>
-        <VictoryArea style={graphStyle} data={graphSamples} />
-      </VictoryChart>
-      */}
+        <VictoryChart>
+          <VictoryArea style={graphStyle} data={graphSamples} />
+        </VictoryChart>
 
         <View style={styles.block}>
           <View style={styles.detailsLine}>

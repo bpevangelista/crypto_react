@@ -13,6 +13,11 @@ Mar 12th
 
 Mar 19th
 
+----
+- Sorting Coins
+- Add to Favorite / Add to wallet
+- ICOs
+
 make another screen
 remove expo from project
 make interface better

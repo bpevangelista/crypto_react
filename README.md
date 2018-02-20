@@ -3,15 +3,16 @@ Crypto markets
 
 ## Installation
 Dependencies:
-- Xcode 8.0 or newer
 - Node 6.0 or newer
+- (iOS) Xcode 9.0 or newer
+- (Android) Android Studio SDK 23
 
 ````
 brew install watchman
 brew install yarn
 
 yarn global add react-native-cli
-yarn install
+yarn
 ````
 
 - React: react, react-native, react-native-chart/victory-native, react-navigation, react-native-vector-icons
