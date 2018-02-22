@@ -2,19 +2,29 @@ Feb 19th
 v - Remove expo from project
 v - Details page
 v - Details Dummy graph
-- Search bar
-- Total Market Cap
+v - Search bar
+v - Better Layout/Interface
 
 Feb 26th
-- Add to Favorite / Add to wallet
-- Sorting Coins
-- Better Layout/Interface
+- Add "Favorites" option
+- Add filtering All / Favorites
+- Add Sorting: market cap (rank), volume trading, % change
+- Add Sorting up/down button
+- Fix TabBar coloring
+- Fix details page coloring
 
 Mar 5th
 - Basic server
 - Splash screen
+- Improve app coloring
 
 Mar 12th
 - ICOs
+- Add coin wallet support
 
 Mar 19th
+
+
+---- Ice Bucket
+----------------------------------------------------------------------
+- Total Market Cap
