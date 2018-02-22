@@ -4,9 +4,14 @@ const defaultState = {
   items: [],
   itemDetails: null,
   refreshing: false,
+  sortAndFilter: {
+    sortType: 0,
+    filterType: 0,
+    filterText: '',
+  }
 };
 
-const marketsReducer = (state = defaultState, action) => {
+const marketsReducer = (state : MarketsStoreType = defaultState, action) => {
   let newState = null;
 
   switch (action.type) {

@@ -33,6 +33,27 @@ export type MarketItemDetailsType = {
   last_updated: string,
 };
 
+export const MarketSortTypes = {
+  rank: 0,
+};
+export const MarketFilterTypes = {
+  all: 0,
+  favorites: 1,
+};
+
+export type MarketsSortAndFilterType = {
+  sortType: number,
+  filterType: number,
+  filterText: string,
+};
+
+export type MarketsStoreType = {
+  items: Array<MarketItemType>,
+  itemDetails: MarketItemDetailsType,
+  refreshing: boolean,
+  sortAndFilter: MarketsSortAndFilterType,
+}
+
 /*
 "key": "bitcoin", "id": "bitcoin", "name": "Bitcoin", "symbol": "BTC", "rank": "1", "price_usd": "11305.2",
 "price_btc": "1.0", "24h_volume_usd": "13947800000.0", "market_cap_usd": "190058070722",
