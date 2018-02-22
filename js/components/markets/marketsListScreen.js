@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react';
 import { connect } from 'react-redux';
-import { Alert, FlatList, StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native';
+import { FlatList, StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import MarketsTopBar from './marketsTopBar';
 

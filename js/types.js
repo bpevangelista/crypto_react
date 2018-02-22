@@ -41,17 +41,18 @@ export const MarketFilterTypes = {
   favorites: 1,
 };
 
-export type MarketsSortAndFilterType = {
-  sortType: number,
+export type MarketsFilterAndSortType = {
   filterType: number,
   filterText: string,
+  sortType: number,
 };
 
 export type MarketsStoreType = {
+  _allItems: Array<MarketItemType>,
   items: Array<MarketItemType>,
   itemDetails: MarketItemDetailsType,
   refreshing: boolean,
-  sortAndFilter: MarketsSortAndFilterType,
+  sortAndFilter: MarketsFilterAndSortType,
 }
 
 /*

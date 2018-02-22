@@ -1,10 +1,10 @@
 /* @flow */
 import React from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native';
+import { Alert, StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native';
 
 import * as actions from '../../actions/marketsActions';
-import type { MarketsSortAndFilterType } from '../../types';
+import type { MarketsFilterAndSortType } from '../../types';
 
 const styles = StyleSheet.create({
   topBar: {
@@ -23,8 +23,8 @@ const styles = StyleSheet.create({
     borderColor: '#202020',
     borderRadius: 10,
     borderWidth: 1,
-    height: 40,
-    padding: 10,
+    height: 34,
+    padding: 6,
   },
   rightBar: {
     flex: 0.2,
@@ -41,11 +41,16 @@ const styles = StyleSheet.create({
 });
 
 type MarketsTopBarProps = {
-  filterAndSort: MarketsSortAndFilterType
+  filterAndSort: MarketsFilterAndSortType,
+  actions: {
+    filterAndSortMarkets: (filterAndSort: MarketsFilterAndSortType) => void,
+  }
 };
 
 type MarketsTopBarState = {
-  filterText: string
+  filterAndSort: MarketsFilterAndSortType,
+  searchTimeout : ?TimeoutID,
+  searchDispatched: boolean,
 };
 
 class MarketsTopBar extends React.Component<MarketsTopBarProps, MarketsTopBarState> {
@@ -53,15 +58,43 @@ class MarketsTopBar extends React.Component<MarketsTopBarProps, MarketsTopBarSta
     super(props);
 
     this.state = {
-      filterText: props.sortAndFilter.filterText,
+      filterAndSort: props.filterAndSort,
+      searchTimeout: null,
+      searchDispatched: false,
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.state.searchTimeout !== null) {
+      clearTimeout(this.state.searchTimeout);
+    }
+  }
+
+  dispatchSearch() {
+    if (!this.state.searchDispatched) {
+      this.setState({searchDispatched: true});
+
+      // Dispatch
+      this.props.actions.filterAndSortMarkets(this.state.filterAndSort);
+      //Alert.alert('Alert Title', this.state.filterAndSort.filterText);
     }
   }
 
   onSearchChanged(text: string) {
-    this.setState({filterText: text});
+    // Dispatch after search settles for 500ms
+    if (this.state.searchTimeout !== null) {
+      clearTimeout(this.state.searchTimeout);
+    }
+    let searchTimeout = setTimeout(() => this.dispatchSearch(), 500);
 
-    // action update
-    // if char >=3 wait 1s to dispatch search, reset on type
+    this.setState({
+      filterAndSort: {
+        ...this.state.filterAndSort,
+        filterText: text,
+      },
+      searchTimeout: searchTimeout,
+      searchDispatched: false,
+    });
   }
 
   render() {
@@ -75,13 +108,15 @@ class MarketsTopBar extends React.Component<MarketsTopBarProps, MarketsTopBarSta
             autoCorrect={false}
             autoFocus={false}
             keyboardType='default'
-            value={this.state.filterText}
+            value={this.state.filterAndSort.filterText}
+            onBlur={() => this.dispatchSearch()}
             onChangeText={(text) => this.onSearchChanged(text)} />
         </View>
 
         <View style={styles.rightBar}>
           <Text>All</Text>
         </View>
+
         <View style={styles.rightBar}>
           <Text>Favorites</Text>
         </View>
@@ -91,16 +126,13 @@ class MarketsTopBar extends React.Component<MarketsTopBarProps, MarketsTopBarSta
 }
 
 const mapStateToProps = storeState => ({
-  sortAndFilter: storeState.markets.sortAndFilter
+  filterAndSort: storeState.markets.filterAndSort
 });
 const mapDispatchToProps = dispatch => ({
   actions: {
-    fetchMarkets: () => {
-      dispatch(actions.fetchMarkets(dispatch));
+    filterAndSortMarkets: (filterAndSort) => {
+      dispatch(actions.filterAndSortMarkets(filterAndSort));
     },
-    showMarketDetails: (item) => {
-      dispatch(actions.showMarketDetails(item));
-    }
   }
 });
 export default connect(mapStateToProps, mapDispatchToProps)(MarketsTopBar);

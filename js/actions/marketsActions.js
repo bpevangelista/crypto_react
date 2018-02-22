@@ -3,6 +3,7 @@ export const FETCH_MARKETS_FULFILLED = 'FETCH_MARKETS_FULFILLED';
 export const FETCH_MARKETS_ERROR = 'FETCH_MARKETS_ERROR';
 export const FETCH_MARKET_DETAILS_PENDING = 'FETCH_MARKET_DETAILS_PENDING';
 export const FETCH_MARKET_DETAILS_FULFILLED = 'FETCH_MARKET_DETAILS_FULFILLED';
+export const FILTER_AND_SORT_MARKETS = 'FILTER_AND_SORT_MARKETS';
 
 const fetchMarketsError = (err) => ({
   type: FETCH_MARKETS_ERROR,
@@ -16,6 +17,24 @@ const fetchMarketsPending = () => ({
 const fetchMarketsFulfilled = (resultArray) => ({
   type: FETCH_MARKETS_FULFILLED,
   payload: resultArray
+});
+
+const fetchMarketDetailsPending = (basicItem) => ({
+  type: FETCH_MARKET_DETAILS_PENDING,
+  payload: basicItem
+});
+
+const fetchMarketDetailsFulfilled = (completeItem) => ({
+  type: FETCH_MARKET_DETAILS_FULFILLED,
+  payload: completeItem
+});
+
+
+// Exported
+// --------------------------------------------------------------------------------
+export const filterAndSortMarkets = (filterAndSort : MarketsFilterAndSortType) => ({
+  type: FILTER_AND_SORT_MARKETS,
+  payload: filterAndSort,
 });
 
 export const fetchMarkets = () => {
@@ -35,16 +54,6 @@ export const fetchMarkets = () => {
     });
   }
 }
-
-const fetchMarketDetailsPending = (basicItem) => ({
-  type: FETCH_MARKET_DETAILS_PENDING,
-  payload: basicItem
-});
-
-const fetchMarketDetailsFulfilled = (completeItem) => ({
-  type: FETCH_MARKET_DETAILS_FULFILLED,
-  payload: completeItem
-});
 
 export const showMarketDetails = (item) => {
   return (dispatch) => {

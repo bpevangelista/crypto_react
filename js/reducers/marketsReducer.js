@@ -1,14 +1,35 @@
 import * as actions from '../actions/actions'
 
 const defaultState = {
+  _allItems: [],
   items: [],
   itemDetails: null,
   refreshing: false,
-  sortAndFilter: {
+  filterAndSort: {
     sortType: 0,
     filterType: 0,
     filterText: '',
   }
+};
+
+const filterAndSortMarketItems = (
+  items : Array<MarketItemType>,
+  filterAndSort: MarketsFilterAndSortType) : Array<MarketItemType> => {
+
+  let results = [];
+  if (!items) {
+    return results;
+  }
+
+  let filterText = filterAndSort.filterText.toLowerCase();
+  for (let i = 0; i < items.length; ++i) {
+    let item = items[i];
+    if (item.name.toLowerCase().includes(filterText)) {
+      results.push(item);
+    }
+  }
+
+  return results;
 };
 
 const marketsReducer = (state : MarketsStoreType = defaultState, action) => {
@@ -23,7 +44,9 @@ const marketsReducer = (state : MarketsStoreType = defaultState, action) => {
 
     case actions.FETCH_MARKETS_FULFILLED:
       newState = Object.assign({}, state, {
-        items: action.payload, refreshing: false
+        _allItems: action.payload,
+        items: filterAndSortMarketItems(action.payload, state.filterAndSort),
+        refreshing: false
       });
     break;
 
@@ -44,6 +67,13 @@ const marketsReducer = (state : MarketsStoreType = defaultState, action) => {
     case actions.FETCH_MARKET_DETAILS_FULFILLED:
       newState = Object.assign({}, state, {
         itemDetails: action.payload
+      });
+    break;
+
+    case actions.FILTER_AND_SORT_MARKETS:
+      newState = Object.assign({}, state, {
+        filterAndSort: action.payload,
+        items: filterAndSortMarketItems(state._allItems, action.payload),
       });
     break;
   }
