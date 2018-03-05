@@ -9,6 +9,11 @@
 
 #import <UIKit/UIKit.h>
 
+#ifdef DEBUG
+  #define RCT_DEV 0
+  #define RCT_DEBUG 0
+#endif
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (nonatomic, strong) UIWindow *window;
