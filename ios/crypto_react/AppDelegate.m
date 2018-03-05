@@ -7,6 +7,10 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
+//#define DEBUG 0
+//#define RCT_DEV 0
+//#define RCT_DEBUG 0
+
 #import "AppDelegate.h"
 
 #import <React/RCTBundleURLProvider.h>
@@ -18,6 +22,8 @@
 {
   NSURL *jsCodeLocation;
 
+  //jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+  
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
