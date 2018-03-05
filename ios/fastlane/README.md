@@ -26,6 +26,11 @@ TestFlight Build and Push
 fastlane ios dev
 ```
 Development Build
+### ios icons
+```
+fastlane ios icons
+```
+
 
 ----
 

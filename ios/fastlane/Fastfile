@@ -21,6 +21,7 @@ platform :ios do
 
     # Icon
     appicon(appicon_image_file: '../assets/appicon/teacup.png',
+      appicon_path: 'crypto_react/Images.xcassets',
       appicon_devices: [:iphone, :ios_marketing])
 
     # Build app
@@ -32,13 +33,20 @@ platform :ios do
 
   desc "Development Build"
   lane :dev do
+    # Icon
+    appicon(appicon_image_file: '../assets/appicon/teacup.png',
+      appicon_path: 'crypto_react/Images.xcassets',
+      appicon_devices: [:iphone, :ios_marketing])
+
+    # Build app
     Dir.chdir "../.." do
-      sh "react-native run-ios --scheme crypto_react --configuration Debug"
+      sh "react-native run-ios --scheme crypto_react --configuration Debug --simulator=\"iPhone 7\""
     end
   end
 
-  lane :appicon do
+  lane :icons do
     appicon(appicon_image_file: '../assets/appicon/teacup.png',
+      appicon_path: 'crypto_react/Images.xcassets',
       appicon_devices: [:iphone, :ios_marketing])
   end
 end
