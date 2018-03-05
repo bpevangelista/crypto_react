@@ -15,6 +15,11 @@ yarn global add react-native-cli
 yarn
 ````
 
+Fastlane:
+```
+sudo gem install fastlane -NV
+```
+
 - React: react, react-native, react-native-chart/victory-native, react-navigation, react-native-vector-icons
 - Redux: redux, react-redux, redux-logger, redux-thunk
 - Devtools: react-native-cli, react-devtools, babel-cli, babel-preset-flow, flow-bin
@@ -23,6 +28,7 @@ yarn
 
 ```
 git config --global pull.rebase true
+export FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD=bdkj-dsab-oipo-rloz
 ```
 
 # Phylosophies

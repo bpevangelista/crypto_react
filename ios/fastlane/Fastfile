@@ -12,10 +12,33 @@
 default_platform(:ios)
 
 platform :ios do
-  desc "Push a new beta build to TestFlight"
+  desc "TestFlight Build and Push"
   lane :beta do
+    # Build jsbundle
+    Dir.chdir "../.." do
+      sh "react-native bundle --platform ios --dev false --entry-file index.ios.js --bundle-output ios/main.jsbundle --assets-dest ios"
+    end
+
+    # Icon
+    appicon(appicon_image_file: '../assets/appicon/teacup.png',
+      appicon_devices: [:iphone, :ios_marketing])
+
+    # Build app
     increment_build_number(xcodeproj: "crypto_react.xcodeproj")
-    build_app(scheme: "crypto_react")
+    match(type: "appstore", git_url:"git@github.com:bpevangelista/fastlane_certificates.git")
+    build_app(scheme: "crypto_react", configuration: "Release", output_directory: "builds")
     upload_to_testflight
+  end
+
+  desc "Development Build"
+  lane :dev do
+    Dir.chdir "../.." do
+      sh "react-native run-ios --scheme crypto_react --configuration Debug"
+    end
+  end
+
+  lane :appicon do
+    appicon(appicon_image_file: '../assets/appicon/teacup.png',
+      appicon_devices: [:iphone, :ios_marketing])
   end
 end

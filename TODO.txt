@@ -5,25 +5,27 @@ v - Details Dummy graph
 v - Search bar
 v - Better Layout/Interface
 
-Feb 26th
+Mar 5th
+v - Add Sorting: market cap (rank), volume trading, % change
+v - Integrate with Fastlane
+v - Make Debug/Release builds and test performance
+- Add App Icon
+- Add App Splashscreen
+
+Mar 12th
+- Integrate with Fabric
+- Add Sorting up/down button
 - Add "Favorites" option
 - Add filtering All / Favorites
-- Add Sorting: market cap (rank), volume trading, % change
-- Add Sorting up/down button
 - Fix TabBar coloring
 - Fix details page coloring
 
-Mar 5th
+Mar 19th
 - Basic server
-- Splash screen
 - Improve app coloring
-
-Mar 12th
 - Add Scrollbar to details (in case it doesn't fit height)
 - ICOs
 - Add coin wallet support
-
-Mar 19th
 
 
 ---- Ice Bucket

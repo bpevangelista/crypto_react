@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
+    "ios-dev": "react-native run-ios --scheme crypto_react --configuration Debug",
+    "ios-beta": "cd ios && fastlane ios beta && cd ..",
     "test": "jest"
   },
   "dependencies": {
