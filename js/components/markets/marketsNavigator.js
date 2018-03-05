@@ -3,7 +3,7 @@ import React from 'react';
 import { StackNavigator } from 'react-navigation';
 
 import MarketsListScreen from './marketsListScreen';
-import MarketDetailsScreen from './marketDetails';
+import MarketDetailsScreen from './marketDetailsScreen';
 
 const MarketsNavigator = StackNavigator({
   MarketsList: {

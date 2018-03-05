@@ -4,39 +4,44 @@ import { connect } from 'react-redux';
 import { Alert, StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native';
 
 import * as actions from '../../actions/marketsActions';
+import { MarketSortTypes } from '../../types';
 import type { MarketsFilterAndSortType } from '../../types';
 
 const styles = StyleSheet.create({
   topBar: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    //paddingBottom: 4,
-    //paddingLeft: 4,
-    //paddingRight: 4,
     padding: 6,
   },
   searchBar: {
-    flex: 1,
+    flex: 0.4,
     flexDirection: 'row',
     backgroundColor: '#202020',
     borderColor: '#202020',
     borderRadius: 10,
     borderWidth: 1,
     height: 34,
-    padding: 6,
-  },
-  rightBar: {
-    flex: 0.2,
-    flexDirection: 'row',
-    height: 40,
-    padding: 10,
+    padding: 4,
   },
   rightBar: {
     flex: 0.4,
-    flexDirection: 'row',
-    height: 40,
-    padding: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  borderButton: {
+    justifyContent: 'center',
+    borderRadius: 6,
+    borderWidth: 1,
+    padding: 4,
+  },
+  rightBar2: {
+    flex: 0.3,
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+  },
+  text: {
+    color: 'white',
   },
 });
 
@@ -44,6 +49,7 @@ type MarketsTopBarProps = {
   filterAndSort: MarketsFilterAndSortType,
   actions: {
     filterAndSortMarkets: (filterAndSort: MarketsFilterAndSortType) => void,
+    sortMarkets: (filterAndSort: MarketsFilterAndSortType) => void,
   }
 };
 
@@ -85,7 +91,7 @@ class MarketsTopBar extends React.Component<MarketsTopBarProps, MarketsTopBarSta
     if (this.state.searchTimeout !== null) {
       clearTimeout(this.state.searchTimeout);
     }
-    let searchTimeout = setTimeout(() => this.dispatchSearch(), 500);
+    let searchTimeout = setTimeout(() => this.dispatchSearch(), 250);
 
     this.setState({
       filterAndSort: {
@@ -97,7 +103,24 @@ class MarketsTopBar extends React.Component<MarketsTopBarProps, MarketsTopBarSta
     });
   }
 
+  onSortPressed() {
+    let filterAndSort = Object.assign({}, this.state.filterAndSort);
+    filterAndSort.sortType = (filterAndSort.sortType + 1) % MarketSortTypes.count;
+
+    // TODO Change this to cycleSortMarkets()
+    this.setState({filterAndSort: filterAndSort});
+    this.props.actions.sortMarkets(filterAndSort);
+  }
+
   render() {
+    // TODO Fix this
+    let sortNames = [
+      'MarketCap',
+      'Change',
+      'Volume',
+    ];
+    //&#9660 &#9650
+
     return(
       <View style={styles.topBar}>
         <View style={styles.searchBar}>
@@ -114,12 +137,18 @@ class MarketsTopBar extends React.Component<MarketsTopBarProps, MarketsTopBarSta
         </View>
 
         <View style={styles.rightBar}>
-          <Text>All</Text>
+          <View style={styles.borderButton}>
+            <Text style={styles.text}>  All | Saved </Text>
+          </View>
         </View>
 
-        <View style={styles.rightBar}>
-          <Text>Favorites</Text>
-        </View>
+        <TouchableHighlight underlayColor='black' onPress={() => this.onSortPressed()}>
+          <View style={styles.rightBar2}>
+            <Text style={styles.text}>
+              {sortNames[this.state.filterAndSort.sortType]} &#9660;
+            </Text>
+          </View>
+        </TouchableHighlight>
       </View>
     );
   }
@@ -132,6 +161,9 @@ const mapDispatchToProps = dispatch => ({
   actions: {
     filterAndSortMarkets: (filterAndSort) => {
       dispatch(actions.filterAndSortMarkets(filterAndSort));
+    },
+    sortMarkets: (filterAndSort) => {
+      dispatch(actions.sortMarkets(filterAndSort));
     },
   }
 });

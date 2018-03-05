@@ -13,6 +13,9 @@ const reactNavigation = createReactNavigationReduxMiddleware('navKey', getNavFro
 const logger = createLogger();
 const middlewares = applyMiddleware(thunk, reactNavigation, logger);
 
+// Remove logger from release
+//const middlewares = applyMiddleware(thunk, reactNavigation);
+
 const store = createStore(reducers, middlewares);
 store.dispatch(actions.fetchMarkets());
 

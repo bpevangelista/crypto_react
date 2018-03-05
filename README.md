@@ -19,6 +19,12 @@ yarn
 - Redux: redux, react-redux, redux-logger, redux-thunk
 - Devtools: react-native-cli, react-devtools, babel-cli, babel-preset-flow, flow-bin
 
+# Must-Have Configurations
+
+```
+git config --global pull.rebase true
+```
+
 # Phylosophies
 
 https://github.com/ModusCreateOrg/react-navigation-redux-sample

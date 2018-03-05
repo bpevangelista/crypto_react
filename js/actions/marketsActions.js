@@ -4,6 +4,7 @@ export const FETCH_MARKETS_ERROR = 'FETCH_MARKETS_ERROR';
 export const FETCH_MARKET_DETAILS_PENDING = 'FETCH_MARKET_DETAILS_PENDING';
 export const FETCH_MARKET_DETAILS_FULFILLED = 'FETCH_MARKET_DETAILS_FULFILLED';
 export const FILTER_AND_SORT_MARKETS = 'FILTER_AND_SORT_MARKETS';
+export const SORT_MARKETS = 'SORT_MARKETS';
 
 const fetchMarketsError = (err) => ({
   type: FETCH_MARKETS_ERROR,
@@ -34,6 +35,11 @@ const fetchMarketDetailsFulfilled = (completeItem) => ({
 // --------------------------------------------------------------------------------
 export const filterAndSortMarkets = (filterAndSort : MarketsFilterAndSortType) => ({
   type: FILTER_AND_SORT_MARKETS,
+  payload: filterAndSort,
+});
+
+export const sortMarkets = (filterAndSort : MarketsFilterAndSortType) => ({
+  type: SORT_MARKETS,
   payload: filterAndSort,
 });
 

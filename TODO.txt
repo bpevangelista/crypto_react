@@ -19,6 +19,7 @@ Mar 5th
 - Improve app coloring
 
 Mar 12th
+- Add Scrollbar to details (in case it doesn't fit height)
 - ICOs
 - Add coin wallet support
 

@@ -34,7 +34,10 @@ export type MarketItemDetailsType = {
 };
 
 export const MarketSortTypes = {
-  rank: 0,
+  rank:     0,
+  change:   1,
+  volume:   2,
+  count:    3,
 };
 export const MarketFilterTypes = {
   all: 0,
